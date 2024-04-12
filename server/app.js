@@ -7,6 +7,13 @@ const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const cloudinary = require('cloudinary').v2;
+const bodyParser = require('body-parser');
+const formData = require('express-form-data');
+
+const userRoutes = require('./routes/user');
+const medicalReportRoutes = require('./routes/medicalreport');
+const errorMiddleware = require('./middlewares/error');
 
 const dbUrl = process.env.ATLAS_URL || 'mongodb://127.0.0.1:27017/SanjeevYatra';
 mongoose.connect(dbUrl)
@@ -26,11 +33,24 @@ app.use(cors({
     credentials: true,
 }));
 
-app.get('/', (reeq, res, next) => {
+app.use(bodyParser.json());
+app.use(formData.parse());
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+app.get('/', (req, res, next) => {
     res.send("hello");
 })
 
-port = 3000;
+app.use('/api/v1/', userRoutes);
+
+app.use(errorMiddleware);
+
+port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
 })
