@@ -1,11 +1,15 @@
-import { useState } from 'react'
-import './Login.scss'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './Register.scss';
 
 const Register = () => {
     const [formData, setFormData] = useState({
+        name: '',
         email: '',
-        password: ''
+        mobile: '',
+        adhar: '',
+        bloodGroup: '',
+        location: ''
     });
 
     const [errors, setErrors] = useState({});
@@ -44,6 +48,10 @@ const Register = () => {
             if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
                 errors.email = 'Email is invalid';
             }
+
+            if (!formData.mobile.trim() || !/^\d{10}$/.test(formData.mobile)) {
+                errors.mobile = 'Mobile number should be 10 digits';
+            }
         }
 
         return errors;
@@ -51,15 +59,25 @@ const Register = () => {
 
     return (
         <div className="login-form-container">
-            <h2>Login</h2>
+            <h2>Register Here</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
+                    {errors.name && <span className="error">{errors.name}</span>}
                     <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
                     {errors.email && <span className="error">{errors.email}</span>}
                 </div>
                 <div className="form-row">
-                    <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="password" required />
-                    {errors.password && <span className="error">{errors.password}</span>}
+                    <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="Mobile" pattern="[0-9]{10}" required />
+                    {errors.mobile && <span className="error">{errors.mobile}</span>}
+                    <input type="text" name="adhar" value={formData.adhar} onChange={handleChange} placeholder="Adhar" required />
+                    {errors.adhar && <span className="error">{errors.adhar}</span>}
+                    <input type="text" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} placeholder="Blood Group" required />
+                    {errors.bloodGroup && <span className="error">{errors.bloodGroup}</span>}
+                </div>
+                <div className="form-row">
+                    <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Location" required />
+                    {errors.location && <span className="error">{errors.location}</span>}
                 </div>
                 {Object.keys(errors).length === 0 ? (
                     <Link to='/user/dashboard'><button type="submit">Submit</button></Link>
@@ -71,4 +89,4 @@ const Register = () => {
     );
 }
 
-export default Register
+export default Register;
