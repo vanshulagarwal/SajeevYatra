@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const cloudinary = require('cloudinary').v2;
 const bodyParser = require('body-parser');
 const formData = require('express-form-data');
+const { createServer } = require('http');
+const socketInit = require('./socket');
 
 const userRoutes = require('./routes/user');
 const medicalReportRoutes = require('./routes/medicalreport');
@@ -42,6 +44,9 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
+const server = createServer(app);
+socketInit(server);
+
 app.get('/', (req, res, next) => {
     res.send("hello");
 })
@@ -52,6 +57,6 @@ app.use('/api/v1/', medicalReportRoutes);
 app.use(errorMiddleware);
 
 port = process.env.PORT || 3000;
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`listening on port ${port}`);
 })
