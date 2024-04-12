@@ -1,21 +1,22 @@
 .commonnavbar {
-
+    background: #F4FEFF;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     top: 0;
     width: 100%;
-    height: 50px;
+    position: sticky;
+    top: 0;
 
     z-index: 100;
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     .commonnavbarlogo {
-        h2 {
-            color: Black;
-            margin: 1.5rem 1.5rem;
+        .logo{
+            height: 3rem;
+            padding: 0.5rem 1.5rem;
         }
     }
 

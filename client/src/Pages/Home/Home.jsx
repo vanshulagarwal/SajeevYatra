@@ -10,6 +10,7 @@ import ambulance from './Ambulance.png';
 import feature1 from './feature1.png';
 import feature2 from './feature2.png';
 import feature3 from './feature3.png';
+import logo from './logo.png';
 
 
 const Home = () => {
@@ -17,16 +18,7 @@ const Home = () => {
         <>
             <div className='home-page'>
                 <div className='home-navbar'>
-                    <h2>HaiDoc<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.5 13H8V10H10.5V7.5H13.5V10H16V13H13.5V15.5H10.5V13ZM12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2Z" fill="url(#paint0_linear_102_239)" />
-                        <defs>
-                            <linearGradient id="paint0_linear_102_239" x1="1.5" y1="2" x2="18.5" y2="20.5" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#51D9DB" />
-                                <stop offset="1" stop-color="#017399" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    </h2>
+                    <img className="logo" src={logo} />
                     <Link to='/bookambulance/questions'><button><h4>Book An Ambulance</h4></button></Link>
                 </div>
                 <div className='Home-outside'>

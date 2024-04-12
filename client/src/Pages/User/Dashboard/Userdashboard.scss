@@ -1,40 +1,44 @@
 .dashboarduser {
-    background: rgba(250, 250, 250, 1);
+    background: #F4FEFF;
 
 }
 
 .userstats {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    padding: 2rem;
+    padding-bottom: 0rem;
 
-}
-
-.userstats1,
-.userstats2 {
-    border: 1px solid black;
-    width: 20%;
+    .userstats1,
+    .userstats2 {
+    border: 2px solid rgb(6, 124, 135);
+    width: 10rem;
+    height: 5rem;
     margin: 1rem;
     padding: 1rem;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    background: rgba(250, 250, 250, 1);
-
-}
-
-.serchingreport {
-    .searchinginput {
-        width: 40%;
-        height: 7vh;
-        border: 1px solid black;
-        border-radius: 8px;
-        padding: 1%;
-    }
-
-    margin-bottom: 2rem;
-    display: flex;
     justify-content: center;
+    color: rgb(6, 124, 135);
+    background: #ceeced;
+    }
 }
+
+// .serchingreport {
+//     .searchinginput {
+//         width: 40%;
+//         height: 7vh;
+//         border: 1px solid black;
+//         border-radius: 8px;
+//         padding: 1%;
+//     }
+
+//     margin-bottom: 2rem;
+//     display: flex;
+//     justify-content: center;
+// }
 
 .report {
     display: flex;
@@ -48,16 +52,19 @@
     flex-direction: column;
     background-color: #ffffff;
     width: 80%;
-    border: 1px solid black;
+    margin: 2rem;
+    border: 2px solid black;
+    border-color: rgb(19, 139, 149);
+    border-radius: 0.65rem;
 
     .reportshownheading {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-
-        margin-left: 3%;
-        margin-right: 3%;
-        margin-top: 2%;
+        margin: 2rem;
+        margin-bottom: 0rem;
+        // margin-right: 3%;
+        // margin-top: 2%;
 
         .reportsshownheading2 {
             display: flex;
@@ -67,16 +74,39 @@
 }
 
 .reportshowncontent {
+    div{
+        transition: all 0.3s ease;
+    }
+    
 
     .reportsshowncontentdiv {
         color: black;
-        border: 1px solid black;
-        margin: 3%;
-        border-radius: 3px;
+        border: 2px solid transparent;
+        margin: 1rem;
+        border-radius: 0.65rem;
         background-color: rgba(250, 250, 250, 1);
 
         h2 {
-            padding: 0.8%;
+            padding: 0.7rem;
         }
     }
+
+    .reportsshowncontentdiv:nth-child(2n){
+        color: rgb(110, 110, 110);
+    }
+
+    .reportsshowncontentdiv:nth-child(2n):hover{
+        background-color: rgb(230, 230, 230);
+        border-color: rgb(110, 110, 110);
+    }
+
+    .reportsshowncontentdiv:nth-child(2n + 1) {
+        color: rgb(19, 139, 149);
+        background: #e2f9fb;
+      }
+
+    .reportsshowncontentdiv:nth-child(2n + 1):hover {
+        background: #ceeced;
+        border-color: rgb(19, 139, 149);
+      }
 }
