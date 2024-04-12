@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const ErrorHand = require('../utils/errorhand');
 const sendjwtToken = require('../utils/sendjwtToken');
 const bcrypt = require('bcrypt');
 
