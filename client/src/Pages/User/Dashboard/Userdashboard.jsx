@@ -2,11 +2,8 @@ import React, { useState } from 'react'
 import './Userdashboard.scss'
 import Navbar from '../../../Components/Navbar/Navbar'
 import { useEffect } from 'react';
-import socket from '../../../socket';
 
 const Userdashboard = () => {
-    const [userType, setUserType] = useState("patient");
-
     const [data, setData] = useState({});
 
     useEffect(() => {
@@ -23,7 +20,6 @@ const Userdashboard = () => {
                 console.log('Data fetched successfully');
                 console.log(data);
                 setData(data.data);
-                socket.emit('join-room', data.data.phnum);
             } else {
                 console.log(response)
                 console.log('data fetch failed');
