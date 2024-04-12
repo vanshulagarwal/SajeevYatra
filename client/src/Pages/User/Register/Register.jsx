@@ -6,10 +6,12 @@ const Register = () => {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        mobile: '',
-        adhar: '',
+        phnum: '',
+        uid: '',
         bloodGroup: '',
-        location: ''
+        location: '',
+        latitude: '',
+        longitude: ''
     });
 
     const [errors, setErrors] = useState({});
@@ -27,7 +29,23 @@ const Register = () => {
         const validationErrors = validate(formData);
         if (Object.keys(validationErrors).length === 0) {
             // Proceed to the next page
-            console.log(formData);
+            // calling api
+            const response = fetch('http://localhost:3000/api/v1/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+                credentials: 'include'
+            });
+            if (response.ok) {
+                console.log('User registered successfully');
+                console.log(formData);
+            } else {
+                console.log('User registration failed');
+            }
+
+            // console.log(formData);
             // You can submit form data to server or perform further actions
         } else {
             // Set errors state to display validation errors to the user
@@ -49,7 +67,7 @@ const Register = () => {
                 errors.email = 'Email is invalid';
             }
 
-            if (!formData.mobile.trim() || !/^\d{10}$/.test(formData.mobile)) {
+            if (!formData.phnum.trim() || !/^\d{10}$/.test(formData.phnum)) {
                 errors.mobile = 'Mobile number should be 10 digits';
             }
         }
@@ -68,9 +86,9 @@ const Register = () => {
                     {errors.email && <span className="error">{errors.email}</span>}
                 </div>
                 <div className="form-row">
-                    <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="Mobile" pattern="[0-9]{10}" required />
+                    <input type="tel" name="phnum" value={formData.phnum} onChange={handleChange} placeholder="Mobile" pattern="[0-9]{10}" required />
                     {errors.mobile && <span className="error">{errors.mobile}</span>}
-                    <input type="text" name="adhar" value={formData.adhar} onChange={handleChange} placeholder="Adhar" required />
+                    <input type="text" name="uid" value={formData.uid} onChange={handleChange} placeholder="Adhar" required />
                     {errors.adhar && <span className="error">{errors.adhar}</span>}
                     <input type="text" name="bloodGroup" value={formData.bloodGroup} onChange={handleChange} placeholder="Blood Group" required />
                     {errors.bloodGroup && <span className="error">{errors.bloodGroup}</span>}
@@ -79,11 +97,14 @@ const Register = () => {
                     <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Location" required />
                     {errors.location && <span className="error">{errors.location}</span>}
                 </div>
-                {Object.keys(errors).length === 0 ? (
-                    <Link to='/user/dashboard'><button type="submit">Submit</button></Link>
-                ) : (
-                    <button type="submit">Submit</button>
-                )}
+                <div className="form-row">
+                    <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} placeholder="Latitude" required />
+
+                </div>
+                <div className="form-row">
+                    <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} placeholder="longitude" required />
+                </div>
+                <Link to='/user/dashboard' onClick={handleSubmit}><button type="submit">Submit</button></Link>
             </form>
         </div>
     );

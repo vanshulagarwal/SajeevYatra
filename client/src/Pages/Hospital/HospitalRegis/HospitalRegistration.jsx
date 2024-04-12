@@ -24,7 +24,21 @@ const LoginForm = () => {
         const validationErrors = validate(formData);
         if (Object.keys(validationErrors).length === 0) {
             // Proceed with form submission
-            console.log(formData);
+            const response = fetch('http://localhost:3000/api/v1/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+                credentials: 'include'
+            });
+            if (response.ok) {
+                console.log('Hospital registered successfully');
+                console.log(formData);
+            } else {
+                console.log('Hospital registration failed');
+            }
+
             // You can submit form data to server or perform further actions
         } else {
             // Set errors state to display validation errors to the user
@@ -35,7 +49,7 @@ const LoginForm = () => {
     const validate = (formData) => {
         let errors = {};
 
-        if (!formData.name.trim()) {
+        if (!formData.name.trim() ) {
             errors.name = 'Name is required';
         }
 

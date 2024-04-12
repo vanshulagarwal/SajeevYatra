@@ -22,20 +22,20 @@ const BookAmbulance = () => {
     if (Object.keys(validationErrors).length === 0) {
       // Proceed to the next page
       // const response = await fetch('http://localhost:5000/user/register', {
-      //     method: 'POST',
-      //     headers: {
-      //         'Content-Type': 'application/json'
-      //     },
-      //     body: JSON.stringify(formData),
-      //     credentials: 'include'
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(formData),
+      //   credentials: 'include'
       // })
 
-      // if(response.ok){
-      //     console.log('User registered successfully');
+      // if (response.ok) {
+      //   console.log('User registered successfully');
       // }
 
-      // else{
-      //     console.log('User registration failed');
+      // else {
+      //   console.log('User registration failed');
       // }
       // You can submit form data to server or perform further actions
     } else {

@@ -4,7 +4,7 @@ const sendjwtToken = require('../utils/sendjwtToken');
 const bcrypt = require('bcrypt');
 
 module.exports.register = async (req, res, next) => {
-    const { name, uid, phnum, email, userType, location, password } = req.body;
+    const { name, uid, phnum, email, userType, location, password, latitude, longitude } = req.body;
 
     const foundUser = await User.findOne({ uid: uid });
 
@@ -24,7 +24,9 @@ module.exports.register = async (req, res, next) => {
         uid,
         userType,
         address: {
-            location: location
+            location: location,
+            latitude: latitude,
+            longitude: longitude
         },
     });
     await user.save();
