@@ -7,7 +7,7 @@ const sendjwtToken = (user, statusCode, res) => {
         ),
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production', // Set to true in production
-        sameSite: 'None',
+        // sameSite: 'None',
     }
 
     res.status(statusCode).cookie("token", token, options)
