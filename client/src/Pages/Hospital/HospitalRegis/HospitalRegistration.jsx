@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import './HospitalRegistration.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const LoginForm = () => {
+const HospitalRegistration = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         location: '',
-        license: ''
+        uid: '',
+        userType: 'hospital',
+        password: '',
+        email: '',
+        phnum: '',
     });
 
     const [errors, setErrors] = useState({});
@@ -19,12 +24,12 @@ const LoginForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = validate(formData);
         if (Object.keys(validationErrors).length === 0) {
             // Proceed with form submission
-            const response = fetch('http://localhost:3000/api/v1/register', {
+            const response = await fetch('http://localhost:3000/api/v1/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,9 +38,14 @@ const LoginForm = () => {
                 credentials: 'include'
             });
             if (response.ok) {
+                alert('Registration successful');
+                const data = await response.json();
+                localStorage.setItem('uid', data.message.uid);
+                navigate('/hospital/dashboard');
                 console.log('Hospital registered successfully');
                 console.log(formData);
             } else {
+                alert('Invalid credentials');
                 console.log('Hospital registration failed');
             }
 
@@ -57,8 +67,8 @@ const LoginForm = () => {
             errors.location = 'Location is required';
         }
 
-        if (!formData.license.trim()) {
-            errors.license = 'License is required';
+        if (!formData.uid.trim()) {
+            errors.uid = 'License is required';
         }
 
         return errors;
@@ -67,7 +77,7 @@ const LoginForm = () => {
     return (
         <div className="login-form-container">
             <h2>Register Hospital</h2>
-            <form onSubmit={handleSubmit}>
+            <form >
                 <div className="form-row">
                     <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" required />
                     {errors.name && <span className="error">{errors.name}</span>}
@@ -77,13 +87,22 @@ const LoginForm = () => {
                     {errors.location && <span className="error">{errors.location}</span>}
                 </div>
                 <div className="form-row">
-                    <input type="text" name="license" value={formData.license} onChange={handleChange} placeholder="License" required />
-                    {errors.license && <span className="error">{errors.license}</span>}
+                    <input type="text" name="uid" value={formData.uid} onChange={handleChange} placeholder="UID" required />
+                    {errors.uid && <span className="error">{errors.uid}</span>}
                 </div>
-                <Link to="/hospital/dashboard"> <button type="submit">Submit</button></Link>
+                <div className="form-row">
+                    <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="password" required />
+                </div>
+                <div className="form-row">
+                    <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder="email" required />
+                </div>
+                <div className="form-row">
+                    <input type="text" name="phnum" value={formData.phnum} onChange={handleChange} placeholder="phone number" required />
+                </div>
+                <button type="submit" onClick={handleSubmit}>Submit</button>
             </form>
         </div>
     );
 }
 
-export default LoginForm;
+export default HospitalRegistration;

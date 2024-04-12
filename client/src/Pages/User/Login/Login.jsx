@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import './Login.scss'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const Login = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        email: '',
+        uid: '',
         password: ''
     });
 
@@ -18,13 +20,13 @@ const Register = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = validate(formData);
         if (Object.keys(validationErrors).length === 0) {
             // Proceed to the next page
             // calling api
-            const response = fetch('http://localhost:3000/api/v1/login', {
+            const response = await fetch('http://localhost:3000/api/v1/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -33,9 +35,16 @@ const Register = () => {
                 credentials: 'include'
             });
             if (response.ok) {
+                alert('Login successful');
+                const data = await response.json();
                 console.log('User registered successfully');
-                console.log(formData);
+                console.log(data.message);
+                localStorage.setItem('uid', data.message.uid);
+                navigate('/user/dashboard');
+
             } else {
+                alert('Login failed');
+                console.log(response)
                 console.log('User registration failed');
             }
 
@@ -55,10 +64,8 @@ const Register = () => {
             }
         }
 
-        if (Object.keys(errors).length === 0) {
-            if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
-                errors.email = 'Email is invalid';
-            }
+        if (Object.keys(errors).length !== 0) {            
+            errors.uid = 'uid is invalid';            
         }
 
         return errors;
@@ -69,21 +76,19 @@ const Register = () => {
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-row">
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
-                    {errors.email && <span className="error">{errors.email}</span>}
+                    <input type="text" name="uid" value={formData.uid} onChange={handleChange} placeholder="Enter UID" required />
+                    {errors.uid && <span className="error">{errors.uid}</span>}
                 </div>
                 <div className="form-row">
                     <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="password" required />
                     {errors.password && <span className="error">{errors.password}</span>}
-                </div>
-                {Object.keys(errors).length === 0 ? (
-                    <Link to='/user/dashboard'><button type="submit">Submit</button></Link>
-                ) : (
-                    <button type="submit">Submit</button>
-                )}
+                </div>           
+        
+                <button type="submit" onClick={handleSubmit}>Login</button>
+           
             </form>
         </div>
     );
 }
 
-export default Register
+export default Login

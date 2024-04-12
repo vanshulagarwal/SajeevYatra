@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './HospitalLogin.scss';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 
 const HospitalLogin = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        email: '',
+        uid: '',
         password: ''
     });
 
@@ -18,13 +19,13 @@ const HospitalLogin = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Check if form data is empty
-        if (!formData.email.trim() || !formData.password.trim()) {
+        if (!formData.uid.trim() || !formData.password.trim()) {
             setErrors({
-                email: !formData.email.trim() ? 'Email is required' : '',
+                uid: !formData.uid.trim() ? 'uid is required' : '',
                 password: !formData.password.trim() ? 'Password is required' : ''
             });
             return;
@@ -33,7 +34,7 @@ const HospitalLogin = () => {
         const validationErrors = validate(formData);
         if (Object.keys(validationErrors).length === 0) {
             // Proceed with form submission
-            const response = fetch('http://localhost:3000/api/v1/login', {
+            const response = await fetch('http://localhost:3000/api/v1/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -42,9 +43,13 @@ const HospitalLogin = () => {
                 credentials: 'include'
             });
             if (response.ok) {
+                alert('Login successful');
                 console.log('Hospital login successfully');
-                console.log(formData);
+                const data = await response.json();
+                localStorage.setItem('uid', data.message.uid);
+                navigate('/hospital/dashboard');
             } else {
+                alert('Invalid credentials');
                 console.log('Hospital login failed');
             }
 
@@ -58,8 +63,8 @@ const HospitalLogin = () => {
     const validate = (formData) => {
         let errors = {};
 
-        if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email)) {
-            errors.email = 'Email format is invalid';
+        if (!formData.uid.trim() === 0) {
+            errors.uid = 'uid not entered';
         }
 
         if (!formData.password.trim()) {
@@ -72,16 +77,16 @@ const HospitalLogin = () => {
     return (
         <div className="login-form-container">
             <h2>Login Hospital</h2>
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="form-row">
-                    <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
-                    {errors.email && <span className="error">{errors.email}</span>}
+                    <input type="text" name="uid" value={formData.uid} onChange={handleChange} placeholder="UID" required />
+                    {errors.uid && <span className="error">{errors.uid}</span>}
                 </div>
                 <div className="form-row">
                     <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
                     {errors.password && <span className="error">{errors.password}</span>}
                 </div>
-                <Link to="/hospital/dashboard" onClick={handleSubmit}> <button type="submit" style={{ marginBottom: "20px" }}>Submit</button></Link>
+                <button type="submit" style={{ marginBottom: "20px" }} onClick={handleSubmit}>Submit</button>
                 <p className='msgforlogin'>OR If you don't have any account </p>
                 <Link to="/hospital/register"> <button type="submit">Register</button></Link>
             </form>

@@ -32,6 +32,10 @@ module.exports.register = async (req, res, next) => {
     await user.save();
 
     sendjwtToken(user, 201, res);
+    res.status(200).json({
+        success: true,
+        message: user,
+    });
 }
 
 module.exports.login = async (req, res, next) => {
@@ -44,6 +48,10 @@ module.exports.login = async (req, res, next) => {
     }
 
     sendjwtToken(user, 200, res);
+    res.status(200).json({
+        success: true,
+        message: user,
+    });
 }
 
 module.exports.logout = async (req, res, next) => {

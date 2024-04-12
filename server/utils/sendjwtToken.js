@@ -10,11 +10,7 @@ const sendjwtToken = (user, statusCode, res) => {
         sameSite: 'None',
     }
 
-    res.status(statusCode).cookie("token", token, options).json({
-        success: true,
-        user,
-        token,
-    });
+    res.status(statusCode).cookie("token", token, options)
 };
 
 module.exports = sendjwtToken;
