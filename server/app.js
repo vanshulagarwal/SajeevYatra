@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const formData = require('express-form-data');
 
 const userRoutes = require('./routes/user');
-// const medicalReportRoutes = require('./routes/medicalreport');
+const medicalReportRoutes = require('./routes/medicalreport');
 const errorMiddleware = require('./middlewares/error');
 
 const dbUrl = process.env.ATLAS_URL || 'mongodb://127.0.0.1:27017/SanjeevYatra';
@@ -47,6 +47,7 @@ app.get('/', (req, res, next) => {
 })
 
 app.use('/api/v1/', userRoutes);
+app.use('/api/v1/', medicalReportRoutes);
 
 app.use(errorMiddleware);
 

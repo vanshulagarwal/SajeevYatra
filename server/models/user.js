@@ -42,6 +42,12 @@ const userSchema = new mongoose.Schema({
         sex: String,
         age: Number,
     },
+    reports: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'MedicalReport'
+        }
+    ]
 })
 
 userSchema.methods.getJWTToken = function () {
