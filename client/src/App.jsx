@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
 import './App.css'
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from './Pages/Layout/Layout';
+// import Login from './Pages/User/Login/Login.jsx'
+// import AmbulanceRegister from './Pages/AmbulanceDriver/AmbulanceRegister/AmbulanceRegister.jsx';
+// import HospitalRegister from './Pages/Hospital/HospitalRegis/HospitalRegistration.jsx';
+// import BookAmbulance from './Pages/BookAmbulance/BookAmbulance.jsx';
+// import UserDashboard from './Pages/User/Dashboard/Userdashboard.jsx';
+// import HospitalDashboard from './Pages/Hospital/HospitalDashboard/HospitalDashboard.jsx';
+// import AmbulanceDashboard from './Pages/AmbulanceDriver/AmbulanceDashboard/AmbulanceDashboard.jsx';
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />} />
+          {/* <Route path='/user/login' element={<Login />} />
+          <Route path='/ambulance/login' element={<AmbulanceRegister />} />
+          <Route path='/hospital/register' element={<HospitalRegister />} />
+          <Route path='/bookambulance/questions' element={<BookAmbulance />} />
+          <Route path='/user/dashboard' element={<UserDashboard />} />
+          <Route path='/hospital/dashboard' element={<HospitalDashboard />} />
+          <Route path='/ambulance/dashboard' element={<AmbulanceDashboard />} /> */}
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
-
 export default App

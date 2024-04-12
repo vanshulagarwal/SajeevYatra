@@ -1,0 +1,580 @@
+.home-page {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Home-outside {
+    background-color: #F4FEFF;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-navbar {
+    width: 100%;
+    background-color: #F4FEFF;
+    max-width: 1550px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+
+    h2 {
+        padding: 25px;
+        font-size: 2rem;
+        padding-left: 10%;
+    }
+
+    button {
+        transition: all 0.3s ease;
+        margin: 1.5rem 1.5rem;
+        font-size: 1rem;
+        padding: 15px 30px;
+        // margin-right: 10%;
+        background-color: rgb(193, 42, 42);
+        color: white;
+        border: none;
+        border-radius: 2.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    button:hover{
+        background-color: rgba(255, 189, 189, 0.92);
+        color: rgb(193, 42, 42);
+        border-color: rgb(193, 42, 42);
+    }
+}
+
+.HomeContent {
+    max-width: 75%;
+
+    h1 {
+        padding: 29px;
+        line-height: 4rem;
+        font-size: 3rem;
+    }
+
+    span {
+        color: rgba(80, 166, 219, 100%);
+    }
+}
+
+.HomeContent2 {
+    max-width: 70%;
+
+    p {
+        padding-left: 29px;
+        color: #C4C4C4;
+        line-height: 2rem;
+        font-size: 1.2rem;
+        text-align: justify;
+    }
+
+    button {
+        transition: all 0.3s ease;
+        margin: 1.5rem 1.5rem;
+        font-size: 1rem;
+        padding: 15px 40px;
+        background-color: rgb(193, 42, 42);
+        color: white;
+        border: 2px transparent solid;
+        border-radius: 2.5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+            width: 2rem;
+            padding-left: 0.8rem;
+        }
+    }
+
+    button:hover {
+        background-color: rgba(255, 189, 189, 0.92);
+        color: rgb(193, 42, 42);
+        border-color: rgb(193, 42, 42);
+    }
+}
+
+.Home-1 {
+    display: flex;
+    max-width: 1550px;
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+}
+
+.homefullcontent {
+    flex: 1;
+}
+
+.HomeImage {
+    display: flex;
+    align-items: center;
+
+    // position: relative;
+
+    // img{
+    //     position: absolute;
+    // }
+    .doctorImg {
+        height: 500px;
+        padding: 0rem 3rem;
+        padding-bottom: 3.5rem;
+    }
+
+    // .stethoImg {
+    //     top: -1.5rem;
+    //     left: -3.1rem;
+    //     width: 32.8rem;
+    //     height: 29.6rem;
+    // }
+
+}
+
+button,
+button:active,
+button:focus {
+    text-decoration: underline;
+    outline: none;
+}
+
+.mainbuttons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin-top: 50px;
+
+    button {
+        transition: all 0.3s ease;
+        margin-right: 20px;
+        padding: 1rem 5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 20px;
+        cursor: pointer;
+        border: none;
+        font-size: 1.4rem;
+        border: 2px black solid;
+
+        h4 {
+            padding-right: 1rem;
+        }
+    }
+
+    .b1 {
+        border-color:#D9F3F4;
+        background-color: #D9F3F4;
+        color: rgba(40, 161, 172, 100%);
+    }
+
+    .b1:hover{
+        background-color: #b9eef0;
+        border-color:rgb(19, 139, 149);
+        color: rgb(19, 139, 149);
+    }
+
+    .b2 {
+        background-color: rgba(244, 235, 250, 100%);
+        border-color: rgba(244, 235, 250, 100%);
+        color: #7448DD;
+    }
+
+    .b2:hover{
+        background-color: rgb(234, 216, 245);
+        border-color:#7448DD;
+        color: #7448DD;
+    }
+
+    .b3 {
+        background-color: #FFEEEB;
+        border-color: #FFEEEB;
+        color: #EB7375;
+    }
+
+    .b3:hover{
+        background-color: #fcded8;
+        border-color:#EB7375;
+        color: #EB7375;
+    }
+
+    
+
+}
+
+.featurescomponent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .featurecomponentheading {
+        text-align: center;
+        width: 85%;
+        margin: 3rem;
+        font-size: 1.6rem;
+        color: rgba(23, 32, 72, 100%);
+
+        .spannn {
+            color: rgba(69, 174, 191, 100%);
+        }
+
+    }
+}
+
+.featurecomponentcontent {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 85%;
+
+    .head {
+        border-radius: 30px;
+        width: 22%;
+        padding: 2rem;
+
+        .same {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2 {
+                padding-bottom: 1.5rem;
+            }
+
+            p{
+                text-align: justify;
+            }
+        }
+    }
+
+    .featurecomponentcontent1 {
+        background-color: #F4FEFF;
+
+
+
+        .same1 {
+            width: 100%;
+
+            h2 {
+                color: rgba(23, 32, 72, 100%);
+            }
+
+            p {
+                color: rgba(23, 32, 72, 100%);
+            }
+        }
+
+    }
+
+    .featurecomponentcontent2 {
+        background: linear-gradient(#04789D, #4ED6DA);
+
+
+        .same2 {
+            width: 100%;
+
+            h2 {
+                color: #ffffff;
+            }
+
+            p {
+                color: #ffffff;
+            }
+        }
+
+    }
+
+    .featurecomponentcontent3 {
+        background-color: #F4FEFF;
+
+        .same3 {
+            width: 100%;
+
+            h2 {
+                color: rgba(23, 32, 72, 100%);
+            }
+
+            p {
+                color: #025F7D;
+            }
+        }
+
+    }
+
+}
+
+.footer {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #F4FEFF;
+    padding: 8rem 0rem;
+}
+
+
+@media only screen and (max-width: 1150px) {
+    /* CSS rules specific to devices with a maximum width of 768 pixels */
+    .home-navbar {
+      button{
+        margin-right: 1.5rem;
+      }
+      h2{
+        padding-left: 1.5rem;
+      }
+    }
+
+    .HomeContent {
+        max-width: 90%;
+    }
+
+    .HomeContent2 {
+        max-width: 85%;
+    }
+
+    .Home-1 {
+        width: 100%;
+    }
+  
+    .HomeImage {
+        .doctorImg {
+            height: 27rem;
+            padding: 0rem 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+    }
+    
+    .mainbuttons {
+        button {
+            padding: 1rem 3rem;
+    
+            h4 {
+                padding-right: 0.8rem;
+            }
+        }
+    }
+
+    .featurescomponent {
+        .featurecomponentheading {
+            width: 100%;
+            margin: 3rem;
+        }
+    }
+
+    .featurecomponentcontent {
+        width: 100%;
+    
+        .head {
+            padding: 1.5rem;
+    
+            .same {
+                h2 {
+                    padding-bottom: 1rem;
+                }
+            }
+        }
+    }
+
+    .footer{
+        padding: 6rem 0rem;
+        margin-top: 4rem;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    .HomeContent {
+        max-width: 100%;
+    }
+
+    .HomeContent2 {
+        max-width: 95%;
+    }
+
+    .HomeImage {
+        .doctorImg {
+            height: 23rem;
+            padding: 0rem 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+
+    .mainbuttons {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+    
+        button {
+            transition: all 0.3s ease;
+            margin: 0.75rem;
+            width: 23rem;
+            padding: 1rem 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.4rem;
+            border: 2px black solid;
+    
+            h4 {
+                padding-right: 1rem;
+            }
+        }
+    }
+  }
+
+  @media only screen and (max-width: 650px) {
+
+    .home-navbar {
+        h2 {
+            padding: 1rem;
+            font-size: 1.5rem;
+        }
+    }
+
+    .HomeContent {
+        max-width: 100%;
+    }
+
+    .HomeContent2 {
+        max-width: 95%;
+    }
+
+    .HomeImage {
+        display: none;
+    }
+
+    .mainbuttons {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+    
+        button {
+            transition: all 0.3s ease;
+            margin: 0.75rem;
+            width: 23rem;
+            padding: 1rem 5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.4rem;
+            border: 2px black solid;
+    
+            h4 {
+                padding-right: 1rem;
+            }
+        }
+    }
+
+    .featurecomponentcontent {
+        flex-direction: column;
+        width: 80%;
+    
+        .head {
+            border-radius: 20px;
+            width: 100%;
+            padding: 2rem;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+    
+            .same {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+    
+                h2 {
+                    padding-bottom: 1.5rem;
+                }
+    
+                p{
+                    text-align: justify;
+                }
+
+                img{
+                    height: 4rem;
+                }
+            }
+        }
+    
+        .featurecomponentcontent1 {
+            background-color: #F4FEFF;
+    
+    
+    
+            .same1 {
+                width: 100%;
+    
+                h2 {
+                    color: rgba(23, 32, 72, 100%);
+                }
+    
+                p {
+                    color: rgba(23, 32, 72, 100%);
+                }
+            }
+    
+        }
+    
+        .featurecomponentcontent2 {
+            background: linear-gradient(#04789D, #4ED6DA);
+    
+    
+            .same2 {
+                width: 100%;
+    
+                h2 {
+                    color: #ffffff;
+                }
+    
+                p {
+                    color: #ffffff;
+                }
+            }
+    
+        }
+    
+        .featurecomponentcontent3 {
+            background-color: #F4FEFF;
+    
+            .same3 {
+                width: 100%;
+    
+                h2 {
+                    color: rgba(23, 32, 72, 100%);
+                }
+    
+                p {
+                    color: #025F7D;
+                }
+            }
+    
+        }
+    
+    }
+
+    .footer{
+        margin-top: 1rem;
+        text-align: center;
+    }
+  }
