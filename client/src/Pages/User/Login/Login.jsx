@@ -38,7 +38,6 @@ const Login = () => {
                 alert('Login successful');
                 const data = await response.json();
                 console.log('User registered successfully');
-                console.log(data.message);
                 localStorage.setItem('uid', data.message.uid);
                 navigate('/user/dashboard');
 

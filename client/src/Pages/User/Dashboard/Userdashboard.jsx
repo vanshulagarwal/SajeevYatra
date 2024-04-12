@@ -1,8 +1,37 @@
 import React, { useState } from 'react'
 import './Userdashboard.scss'
 import Navbar from '../../../Components/Navbar/Navbar'
+import { useEffect } from 'react';
+import socket from '../../../socket';
+
 const Userdashboard = () => {
     const [userType, setUserType] = useState("patient");
+
+    const [data, setData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:3000/api/v1/dashboarddata', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Data fetched successfully');
+                console.log(data);
+                setData(data.data);
+                socket.emit('join-room', data.data.phnum);
+            } else {
+                console.log(response)
+                console.log('data fetch failed');
+            }
+        }
+        fetchData();
+    }, [])
+
     return (
         <>
             <div>
@@ -12,7 +41,7 @@ const Userdashboard = () => {
                         <div className='userstats1'>
                             <div>
                                 <h2>Total Reports</h2>
-                                <p>198</p>
+                                <p>{data.uid}</p>
                             </div>
                         </div>
                         <div className='userstats2'>

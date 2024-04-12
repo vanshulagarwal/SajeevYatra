@@ -62,10 +62,6 @@ const AmbulanceForm = () => {
             errors.name = 'Name is required';
         }
 
-        if (!formData.plate.trim()) {
-            errors.plate = 'Plate number is required';
-        }
-
         if (!formData.location.trim()) {
             errors.location = 'Location is required';
         }
