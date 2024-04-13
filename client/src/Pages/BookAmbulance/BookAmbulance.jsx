@@ -7,17 +7,18 @@ import { useEffect } from 'react';
 const BookAmbulance = () => {
 
   useEffect(() => {
-    // Example: Listen for a 'message' event
-    socket.on('found-ambulance', (data) => {
-      console.log('ambulance found', data);
+    socket.on('gotomap', (formData) => {
+      navigate('/map');
     });
-    
+
   }, []);
 
   const [formData, setFormData] = useState({
     name: '',
     phnum: '',
-    address: '',
+    location: '',
+    latitude: '',
+    longitude: ''
   });
 
   const handleChange = (e) => {
@@ -49,7 +50,13 @@ const BookAmbulance = () => {
           <input type="tel" name="phnum" value={formData.phnum} onChange={handleChange} placeholder="Phone No." pattern="[0-9]{10}" required />
         </div>
         <div className="form-row">
-          <input type="text" name="address" value={formData.address} onChange={handleChange} placeholder="Address" required />
+          <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="location" required />
+        </div>
+        <div className="form-row">
+          <input type="text" name="latitude" value={formData.latitude} onChange={handleChange} placeholder="latitude" required />
+        </div>
+        <div className="form-row">
+          <input type="text" name="longitude" value={formData.longitude} onChange={handleChange} placeholder="longitude" required />
         </div>
         <button type="submit" onClick={handleSubmit}>Submit</button>
       </form>

@@ -15,17 +15,18 @@ module.exports = (server) => {
 
         socket.on("join-room", (room) => {
             socket.join(room);
-            console.log(`User joined ${room}`);
+            console.log(`${socket.id} joined ${room}`);
         })
 
         let nearbyAmbulances = [];
         socket.on("find-ambulance", async (form_data) => {
             socket.join(form_data.phnum);
+            console.log('finding ambulance');
             console.log(`${socket.id} joined ${form_data.phnum}`);
             let searchRadius = 0.25;
 
             try {
-                while (nearbyAmbulances.length === 0 && searchRadius <= 1.0) {
+                // while (nearbyAmbulances.length === 0 && searchRadius <= 1.0) {
                     nearbyAmbulances = await User.find({
                         "address.latitude": { $gte: form_data.latitude - searchRadius, $lte: form_data.latitude + searchRadius },
                         "address.longitude": { $gte: form_data.longitude - searchRadius, $lte: form_data.longitude + searchRadius },
@@ -33,7 +34,7 @@ module.exports = (server) => {
                         "userType": "ambulance"
                     });
                     searchRadius += 0.25;
-                }
+                // }
                 if (nearbyAmbulances.length === 0) {
                     throw new Error("No ambulances near your location");
                 }
@@ -47,6 +48,7 @@ module.exports = (server) => {
                             // If an ambulance accepts and no other ambulance has accepted yet
                             accepted = true;
                             socket.join(form_data.phnum);
+                            socket.to(form_data.phnum).emit('gotomap',true);
                             console.log("Request accepted by ambulance", ambulance._id);
                         } else {
                             // If an ambulance declines or another ambulance has already accepted

@@ -3,9 +3,31 @@ import './AmbulanceDashboard.scss'
 import Navbar from '../../../Components/Navbar/Navbar'
 import { useEffect } from 'react';
 import socket from '../../../socket';
+import { useNavigate } from 'react-router-dom';
 
 const AmbulanceDashboard = () => {
+    const navigate = useNavigate();
     const [data, setData] = useState({});
+
+    const [queries, setQueries] = useState([]);
+
+    useEffect(() => {
+        // Example: Listen for a 'message' event
+        socket.on('booking-query', (formData) => {
+            setQueries(prev => {
+                return [...prev, formData]
+            })
+        });
+
+        socket.on('gotomap', (formData) => {
+            navigate('/map');
+        });
+
+        return () => {
+            // Clean up event listeners when the component unmounts
+            socket.off('message');
+        };
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,6 +52,10 @@ const AmbulanceDashboard = () => {
         fetchData();
     }, [])
 
+    const handleAccept = (phnum, query) => {
+        socket.emit('booking-response', { response: "accept", query });
+    }
+
     return (
         <>
             <div>
@@ -48,6 +74,15 @@ const AmbulanceDashboard = () => {
                                 <p>100</p>
                             </div>
                         </div>
+                    </div>
+
+                    <div>
+                        {queries.map((query) => {
+                            return <div>
+                                <div>{query.location}, {query.phnum}</div>
+                                <button onClick={() => handleAccept(query.phnum, query)}>Accept</button>
+                            </div>
+                        })}
                     </div>
 
                     <div className="report">
