@@ -12,7 +12,8 @@ import UserDashboard from './Pages/User/Dashboard/Userdashboard.jsx';
 import HospitalDashboard from './Pages/Hospital/HospitalDashboard/HospitalDashboard.jsx';
 import AmbulanceDashboard from './Pages/AmbulanceDriver/AmbulanceDashboard/AmbulanceDashboard.jsx';
 import Register from './Pages/User/Register/Register.jsx';
-
+import Maps from './Pages/Maps/Maps.jsx';
+import UploadForm from './Components/UploadForm/UploadForm.jsx';
 
 function App() {
   return (
@@ -25,11 +26,13 @@ function App() {
           <Route path='/ambulance/register' element={<AmbulanceRegister />} />
           <Route path='/ambulance/login' element={<AmbulanceLogin />} />
           <Route path='/hospital/register' element={<HospitalRegister />} />
+          <Route path='/maps' element={<Maps />} />
           <Route path='/hospital/login' element={<HospitalLogin />} />
           <Route path='/bookambulance/questions' element={<BookAmbulance />} />
           <Route path='/user/dashboard' element={<UserDashboard />} />
           <Route path='/hospital/dashboard' element={<HospitalDashboard />} />
           <Route path='/ambulance/dashboard' element={<AmbulanceDashboard />} />
+          <Route path='/uploadform' element={<UploadForm />} />
         </Routes>
       </BrowserRouter>
     </>
